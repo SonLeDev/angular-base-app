@@ -2,6 +2,7 @@ import { Component, EventEmitter, Output, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { IUser } from "../../models/user";
+import { IUserAccount } from "../interfaces/IUserAccount";
 import { ErrorMatcher } from "./../validators/error.validator";
 
 @Component({
@@ -13,9 +14,7 @@ export class SignupFormComponent implements OnInit {
 
   powers = ["Really Smart", "Super Flexible", "Super Hot", "Weather Changer"];
 
-  model = new Hero(18, "Dr IQ", this.powers[0], "Chuck Overstreet");
-
-  submitted = false;
+  userAccount = new UserAccount(0, "", "", "");
 
   onSubmit() {
     this.submitted = true;
@@ -26,11 +25,11 @@ export class SignupFormComponent implements OnInit {
   }
 }
 
-export class Hero {
+export class UserAccount implements IUserAccount {
   constructor(
     public id: number,
-    public name: string,
-    public power: string,
-    public alterEgo?: string
+    public username: string,
+    public password: string,
+    public token: string
   ) {}
 }
