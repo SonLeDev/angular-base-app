@@ -1,1 +1,5 @@
-<signup-form></signup-form>
+<signup-form
+  [errorMessage]="error$ | async"
+  (signUpEvent)="submit($event)"
+  (resetFormEvent)="resetForm()"
+></signup-form>

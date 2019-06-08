@@ -1,27 +1,46 @@
-import { Component, EventEmitter, Output, OnInit } from "@angular/core";
+import { Component, EventEmitter, Output, Input, OnInit } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { IUser } from "../../models/user";
 import { IUserAccount } from "../interfaces/IUserAccount";
-import { ErrorMatcher } from "./../validators/error.validator";
 
 @Component({
   selector: "signup-form",
   templateUrl: "signup-form.component.html"
 })
 export class SignupFormComponent implements OnInit {
+  signUpForm: FormGroup = new FormGroup({
+    username: new FormControl("", [
+      Validators.required,
+      Validators.minLength(3)
+    ]),
+    password: new FormControl("", [
+      Validators.required,
+      Validators.minLength(6)
+    ])
+  });
+
+  @Output("signUpEvent") formSubmitted: EventEmitter<
+    IUserAccount
+  > = new EventEmitter<IUserAccount>();
+  @Output("resetFormEvent") resetForm: EventEmitter<
+    IUserAccount
+  > = new EventEmitter<IUserAccount>();
+  @Input()
+  errorMessage: string | null;
   ngOnInit() {}
 
-  powers = ["Really Smart", "Super Flexible", "Super Hot", "Weather Changer"];
-
-  userAccount = new UserAccount(0, "", "", "");
+  regisUser: IUserAccount = new UserAccount(0, null, null, null);
 
   onSubmit() {
-    this.submitted = true;
+    console.debug(
+      "=== SignupFormComponent::onSubmit: ",
+      JSON.stringify(this.signUpForm.value)
+    );
+    this.formSubmitted.emit(this.signUpForm.value);
   }
-
-  newHero() {
-    this.model = new Hero(42, "", "");
+  reset() {
+    this.errorMessage = null;
+    this.signUpForm.reset();
+    this.resetForm.emit();
   }
 }
 

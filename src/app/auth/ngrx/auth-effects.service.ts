@@ -12,6 +12,9 @@ import {
 } from "rxjs/operators";
 import { of } from "rxjs";
 import { IUser, ISignupUser } from "./../../models/user";
+
+import { IUserAccount } from "../interfaces/IUserAccount";
+
 import { Router } from "@angular/router";
 
 const USER_KEY = "USER";
@@ -78,9 +81,9 @@ export class AuthEffectsService {
   signup = this.action$.pipe(
     ofType(authActions.SIGNUP),
     map((action: authActions.SignupAction) => action.payload),
-    exhaustMap((state: ISignupUser) =>
+    exhaustMap((state: IUserAccount) =>
       this.authService.signup(state).pipe(
-        map((user: any) => {
+        map((user: IUserAccount) => {
           if (user["error"])
             return new authActions.SignupFailuresAction(user.errorMessages);
           return new authActions.SignupSuccessAction(user);

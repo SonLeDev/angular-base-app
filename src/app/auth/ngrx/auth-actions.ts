@@ -1,6 +1,5 @@
 import { Action } from "@ngrx/store";
-
-import { ISignupUser } from "./../../models/user";
+import { IUserAccount } from "../interfaces/IUserAccount";
 
 export const LOG_IN = "[LOG_IN] user log in ";
 export const LOG_OUT = "[LOG_OUT] user log out ";
@@ -25,74 +24,73 @@ export class AuthFormResetAction implements Action {
 
 export class SignupUserInvalidAction implements Action {
   readonly type = SIGNUP_USER_INVALID;
-  constructor(public payload: any) {
-  }
+  constructor(public payload: any) {}
 }
 export class SignupUserAction implements Action {
   readonly type = SIGNUP_USER;
-  constructor(public payload: any) {
-  }
+  constructor(public payload: any) {}
 }
 export class SignupUserValidAction implements Action {
   readonly type = SIGNUP_USER_VALID;
-  constructor(public payload: any) {
-  }
+  constructor(public payload: any) {}
 }
 
 export class SignupAction implements Action {
   readonly type = SIGNUP;
-  constructor(public payload: any) {
-  }
+  constructor(public payload: IUserAccount) {}
 }
 
 export class SignupSuccessAction implements Action {
   readonly type = SIGNUP_SUCCESS;
-  constructor(public payload: any) {
-  }
+  constructor(public payload: any) {}
 }
 
 export class SignupFailuresAction implements Action {
   readonly type = SIGNUP_FAILURE;
-  constructor(public payload: any) {
-  }
+  constructor(public payload: any) {}
 }
 
 export class SignupRedirecteAction implements Action {
   readonly type = SIGNUP_REDIRECT;
-  constructor(public payload: any) {
-  }
+  constructor(public payload: any) {}
 }
 
 export class LoginAction implements Action {
   readonly type = LOG_IN;
-  constructor(public payload: any) {
-  }
+  constructor(public payload: any) {}
 }
 
 export class LogoutAction implements Action {
   readonly type = LOG_OUT;
-  constructor(public payload: any) {
-  }
+  constructor(public payload: any) {}
 }
 
 export class LogInSuccessAction implements Action {
   readonly type = LOGIN_SUCCESS;
-  constructor(public payload: any) {
-  }
+  constructor(public payload: any) {}
 }
 
 export class LogInFailureAction implements Action {
   readonly type = LOGIN_FAILURE;
-  constructor(public payload: any) {
-  }
+  constructor(public payload: any) {}
 }
 
 export class LogInRedirecteAction implements Action {
   readonly type = LOGIN_REDIRECT;
-  constructor(public payload: any) {
-  }
+  constructor(public payload: any) {}
 }
 
-export type AUTH = LoginAction | LogoutAction | LogInSuccessAction | LogInFailureAction | LogInRedirecteAction
-  | SignupAction | SignupFailuresAction | SignupSuccessAction | SignupRedirecteAction | SignupUserAction |
-  SignupUserInvalidAction | SignupUserValidAction | AuthFormResetAction;
+export type AUTH =
+  | LoginAction
+  | LogoutAction
+  | LogInSuccessAction
+  | LogInFailureAction
+  | LogInRedirecteAction
+  | SignupAction
+  | SignupFailuresAction
+  | SignupSuccessAction
+  | SignupRedirecteAction
+  | SignupUserAction
+  | SignupUserInvalidAction
+  | SignupUserValidAction
+  | AuthFormResetAction;

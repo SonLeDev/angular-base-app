@@ -6,6 +6,7 @@ import { IUser, ISignupUser } from "./../../models/user";
 import * as Auth from "../ngrx/auth-actions";
 import * as fromAuth from "../ngrx";
 import { map } from "rxjs/operators";
+import { IUserAccount } from "../interfaces/IUserAccount";
 
 const USER_KEY = "USER";
 
@@ -34,9 +35,9 @@ export class AuthService {
       .pipe(map(res => res.json()));
   }
 
-  signup({ email, username, password }: ISignupUser): Observable<ISignupUser> {
+  signup({ username, password }: IUserAccount): Observable<IUserAccount> {
     return this.http
-      .post("/api/authenticate/signup", { username, password, email })
+      .post("/api/authenticate/signup", { username, password })
       .pipe(map(res => res.json()));
   }
 

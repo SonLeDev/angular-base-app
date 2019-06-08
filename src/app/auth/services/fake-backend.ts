@@ -6,9 +6,11 @@ import {
   RequestMethod
 } from "@angular/http";
 import { MockBackend, MockConnection } from "@angular/http/testing";
+import { IUserAccount } from "../interfaces/IUserAccount";
 
 import { ISignupUser } from "./../../models/user";
-let createdUsers: ISignupUser[] = [];
+
+let userTableStorageLocal: IUserAccount[] = [];
 
 let songCollection: { username: string; songs: number[] }[] = [];
 
@@ -34,10 +36,11 @@ export let fakeBackendProvider = {
   provide: Http,
   useFactory: (backend: MockBackend, options: BaseRequestOptions) => {
     backend.connections.subscribe((connection: MockConnection) => {
-      let isUsernameUnique = (user: ISignupUser) => {
+      let isUsernameUnique = (user: IUserAccount) => {
         return (
-          createdUsers.findIndex(
-            (currentUser: ISignupUser) => currentUser.username === user.username
+          userTableStorageLocal.findIndex(
+            (currentUser: IUserAccount) =>
+              currentUser.username === user.username
           ) === -1
         );
       };
@@ -73,10 +76,10 @@ export let fakeBackendProvider = {
           }, []).length > 0
         );
       };
-      let isAuthValid = (user: ISignupUser) => {
+      let isAuthValid = (user: IUserAccount) => {
         return (
-          createdUsers.findIndex(
-            (currentUser: ISignupUser) =>
+          userTableStorageLocal.findIndex(
+            (currentUser: IUserAccount) =>
               currentUser.username === user.username &&
               currentUser.password === user.password
           ) !== -1
@@ -93,29 +96,43 @@ export let fakeBackendProvider = {
           tokenValid24hours.setDate(tokenValid24hours.getDate() + 1);
           if (
             params.username !== "" &&
-            params.email !== "" &&
             params.password !== "" &&
             isUsernameUnique(params)
           ) {
-            createdUsers.push({
+            let resBody = {
               username: params.username,
-              email: params.email,
-              password: b64EncodeUnicode(params.password)
+              token: tokenValid24hours
+            };
+
+            console.debug(
+              "=== [fake-backend] reponse 200::POST:/api/authenticate/signup, resBody : ",
+              JSON.stringify(resBody)
+            );
+            userTableStorageLocal.push({
+              id: tokenValid24hours.getMilliseconds(),
+              username: params.username,
+              password: b64EncodeUnicode(params.password),
+              token: tokenValid24hours.getUTCMilliseconds().toPrecision()
             });
             connection.mockRespond(
               new Response(
                 new ResponseOptions({
                   status: 200,
-                  body: { username: params.username, token: tokenValid24hours }
+                  body: resBody
                 })
               )
             );
           } else {
+            let resBody = { error: true, errorMessages: "Signup failed" };
+            console.debug(
+              "=== [fake-backend] reponse 500::POST:/api/authenticate/signup, resBody : ",
+              JSON.stringify(resBody)
+            );
             connection.mockRespond(
               new Response(
                 new ResponseOptions({
-                  status: 200,
-                  body: { error: true, errorMessages: "Signup failed" }
+                  status: 500,
+                  body: resBody
                 })
               )
             );
