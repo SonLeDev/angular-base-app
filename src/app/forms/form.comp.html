@@ -1,0 +1,39 @@
+<div class="card">
+	<h5 class="card-header">Form</h5>
+
+	<div class="card-body">
+		<div class="row cus-row">
+			<div class="col-sm-6">
+				<label for="formLabel">Form label</label>
+				<input type="text" class="form-control" id="formLabel">
+			</div>
+			<div class="col-sm-6">
+				<label for="formIcon">Icon</label>
+			</div>
+		</div>
+		<div class="row cus-row">
+			<div class="col-sm-6">
+				<label for="formHintText">Hint text</label>
+				<textarea class="form-control" id="formHintText" rows="2"></textarea>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group">
+					<label for="formResourceName">Resource name</label>
+					<input type="text" readonly class="form-control" id="formResourceName">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="card">
+	<div class="card-header d-flex flex-row">
+		<select-field-type id="formAddNewField" [selectedType]="selectedType" (onSelectedType)="onSelectedFieldType($event)"
+		 class="col-sm-4">
+		</select-field-type>
+		<button type="button" class="btn btn-outline-primary" (click)="addNewField()">Add</button>
+	</div>
+	<div class="card-body">
+		<field-comp></field-comp>
+	</div>
+</div>

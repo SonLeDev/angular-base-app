@@ -1,0 +1,24 @@
+.cus-card-field {
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.cus-card-field .form-check {
+  margin: 0 15px;
+}
+
+.cus-adv-button span {
+  padding: 0 10px;
+}
+.cus-adv-button span:after {
+  content: "";
+  position: relative;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 8px solid black;
+  left: 8px;
+  top: 10px;
+}

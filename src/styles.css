@@ -1,0 +1,10 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+
+html,
+body {
+  font-family: sans-serif;
+}
+
+.mvh-100 {
+  min-height: 100vh;
+}
