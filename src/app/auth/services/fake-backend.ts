@@ -257,27 +257,36 @@ export let fakeBackendProvider = {
               password: b64EncodeUnicode(params.password)
             })
           ) {
+            let resBody = {
+              username: params.username,
+              token: tokenValid24hours
+            };
+            console.debug(
+              "=== [fake-backend] reponse 200::POST:/api/authenticate/login, resBody : ",
+              JSON.stringify(resBody)
+            );
             connection.mockRespond(
               new Response(
                 new ResponseOptions({
                   status: 200,
-                  body: {
-                    username: params.username,
-                    token: tokenValid24hours,
-                    songCollection: getSongCollectionByUser(params.username)
-                  }
+                  body: resBody
                 })
               )
             );
           } else {
+            let resBody = {
+              error: true,
+              errorMessages: "User not found or invalid credentials"
+            };
+            console.debug(
+              "=== [fake-backend] reponse 503::POST:/api/authenticate/login, resBody : ",
+              JSON.stringify(resBody)
+            );
             connection.mockRespond(
               new Response(
                 new ResponseOptions({
-                  status: 200,
-                  body: {
-                    error: true,
-                    errorMessages: "User not found or invalid credentials"
-                  }
+                  status: 503,
+                  body: resBody
                 })
               )
             );

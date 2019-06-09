@@ -26,7 +26,8 @@ import { BaseRequestOptions } from "@angular/http";
 
 @NgModule({
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
-  exports: [AuthStateComponent]
+  exports: [],
+  declarations: []
 })
 export class AuthModule {
   static forRoot(): ModuleWithProviders {
@@ -35,7 +36,6 @@ export class AuthModule {
       providers: [
         AuthService,
         AuthGuard,
-        // providers used to create fake backend
         fakeBackendProvider,
         MockBackend,
         BaseRequestOptions
@@ -54,11 +54,13 @@ export class AuthModule {
     EffectsModule.forFeature([AuthEffectsService]),
     StoreModule.forFeature("authState", reducers)
   ],
+  exports: [AuthStateComponent],
   declarations: [
     LoginComponent,
     LoginFormComponent,
     SignupComponent,
-    SignupFormComponent
+    SignupFormComponent,
+    AuthStateComponent
   ]
 })
 export class RootAuthModule {}

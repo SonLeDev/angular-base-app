@@ -29,7 +29,7 @@ export class AuthService {
     }
   }
 
-  logIn({ username, password }: IUser): Observable<IUser> {
+  logIn({ username, password }: IUserAccount): Observable<IUserAccount> {
     return this.http
       .post("/api/authenticate/login", { username, password })
       .pipe(map(res => res.json()));

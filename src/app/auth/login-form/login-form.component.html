@@ -1,23 +1,14 @@
 <div class="container alert alert-info">
   <h1>Login</h1>
-  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+  <form (ngSubmit)="onSubmit()" [formGroup]="signInForm">
     <div class="form-group">
       <label for="username">Username</label>
       <input
         type="text"
         class="form-control"
-        id="username"
         required
-        [(ngModel)]="userAccount.username"
-        name="username"
-        #username="ngModel"
+        formControlName="username"
       />
-      <div
-        [hidden]="username.valid || username.pristine"
-        class="alert alert-danger"
-      >
-        Username is required
-      </div>
     </div>
 
     <div class="form-group">
@@ -25,17 +16,9 @@
       <input
         type="password"
         class="form-control"
-        id="password"
-        [(ngModel)]="userAccount.password"
-        name="password"
-        #password="ngModel"
+        required
+        formControlName="password"
       />
-      <div
-        [hidden]="password.valid || password.pristine"
-        class="alert alert-danger"
-      >
-        Password is required
-      </div>
     </div>
     <div>
       <button

@@ -12,7 +12,6 @@ import { DashBoardComp } from "./dashboard/dash.comp";
 const routes: Routes = [
   { path: "signin", component: LoginComponent },
   { path: "signup", component: SignupComponent },
-  { path: "signin/signup", component: SignupComponent },
   {
     path: "dashboard",
     component: DashBoardComp,

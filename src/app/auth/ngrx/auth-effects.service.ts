@@ -25,9 +25,9 @@ export class AuthEffectsService {
   login = this.action$.pipe(
     ofType(authActions.LOG_IN),
     map((action: authActions.LoginAction) => action.payload),
-    exhaustMap((user: IUser) =>
+    exhaustMap((user: IUserAccount) =>
       this.authService.logIn(user).pipe(
-        map((user: any) => {
+        map((user: IUserAccount) => {
           if (user["error"])
             return new authActions.LogInFailureAction(user.errorMessages);
           return new authActions.LogInSuccessAction(user);

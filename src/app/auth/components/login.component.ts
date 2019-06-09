@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { IUser } from "../../models/user";
 import { AuthService } from "./../services/auth.service";
 import { Store, select } from "@ngrx/store";
 import * as reducers from "./../ngrx";
@@ -7,6 +6,7 @@ import * as rootReducers from "./../../root-redux/reducers";
 import * as rootActions from "./../../root-redux/app-actions";
 
 import * as authActions from "./../ngrx/auth-actions";
+import { IUserAccount } from "../interfaces/IUserAccount";
 
 @Component({
   selector: "login",
@@ -25,12 +25,12 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.store.pipe(select(reducers.getLoggedIn)).subscribe(val => {
       if (val) {
-        this.store.dispatch(new rootActions.RedirectToAction("music"));
+        this.store.dispatch(new rootActions.RedirectToAction("dashboard"));
       }
     });
   }
 
-  submit(user: IUser) {
+  submit(user: IUserAccount) {
     this.store.dispatch(new authActions.LoginAction(user));
   }
 }

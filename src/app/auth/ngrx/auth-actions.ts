@@ -57,7 +57,7 @@ export class SignupRedirecteAction implements Action {
 
 export class LoginAction implements Action {
   readonly type = LOG_IN;
-  constructor(public payload: any) {}
+  constructor(public payload: IUserAccount) {}
 }
 
 export class LogoutAction implements Action {
