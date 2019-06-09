@@ -24,11 +24,6 @@ import { fakeBackendProvider } from "./services/fake-backend";
 import { MockBackend } from "@angular/http/testing";
 import { BaseRequestOptions } from "@angular/http";
 
-@NgModule({
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
-  exports: [],
-  declarations: []
-})
 export class AuthModule {
   static forRoot(): ModuleWithProviders {
     return {

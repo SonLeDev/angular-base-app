@@ -12,7 +12,6 @@ import { metaReducers } from "./root-redux/meta-reducer";
 import { rootRoutes } from "./app.router.config";
 
 import { AuthModule } from "./auth/auth.module";
-import { AuthStateComponent } from "./auth/auth-state/auth-state.component";
 
 import { SideBarNavComp } from "./layouts/sidebar.nav.comp";
 import { MenuTopNavComp } from "./layouts/menutop.nav.comp";
@@ -37,7 +36,6 @@ import { SelectFieldType } from "./fields/commons/select.field.type";
     AuthModule.forRoot()
   ],
   declarations: [
-    //LoginComponent,
     AppRootComp,
     SideBarNavComp,
     MenuTopNavComp,
