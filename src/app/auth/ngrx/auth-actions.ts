@@ -1,22 +1,22 @@
-import { Action } from "@ngrx/store";
-import { IUserAccount } from "../interfaces/IUserAccount";
+import { Action } from '@ngrx/store';
+import { IUserAccount } from '../interfaces/IUserAccount';
 
-export const LOG_IN = "[LOG_IN] user log in ";
-export const LOG_OUT = "[LOG_OUT] user log out ";
-export const LOGIN_SUCCESS = "[LOGIN_SUCCESS] login success";
-export const LOGIN_FAILURE = "[LOGIN_FAILURE] fail to login";
-export const LOGIN_REDIRECT = "[LOGIN_REDIRECT] login redirect";
+export const LOG_IN = '[LOG_IN] user log in ';
+export const LOG_OUT = '[LOG_OUT] user log out ';
+export const LOGIN_SUCCESS = '[LOGIN_SUCCESS] login success';
+export const LOGIN_FAILURE = '[LOGIN_FAILURE] fail to login';
+export const LOGIN_REDIRECT = '[LOGIN_REDIRECT] login redirect';
 
-export const SIGNUP = "[SIGNUP] user signup";
-export const SIGNUP_SUCCESS = "[SIGNUP_SUCCESS] user signup success";
-export const SIGNUP_FAILURE = "[SIGNUP_FAILURE] user signup failure";
-export const SIGNUP_REDIRECT = "[SIGNUP_REDIRECT] user signup redirect";
+export const SIGNUP = '[SIGNUP] user signup';
+export const SIGNUP_SUCCESS = '[SIGNUP_SUCCESS] user signup success';
+export const SIGNUP_FAILURE = '[SIGNUP_FAILURE] user signup failure';
+export const SIGNUP_REDIRECT = '[SIGNUP_REDIRECT] user signup redirect';
 
-export const SIGNUP_USER = "[SIGNUP_USER] verify user allready";
-export const SIGNUP_USER_INVALID = "[SIGNUP_USER_INVALID] user allready taken";
-export const SIGNUP_USER_VALID = "[SIGNUP_VERIFY_USER] user valid";
+export const SIGNUP_USER = '[SIGNUP_USER] verify user allready';
+export const SIGNUP_USER_INVALID = '[SIGNUP_USER_INVALID] user allready taken';
+export const SIGNUP_USER_VALID = '[SIGNUP_VERIFY_USER] user valid';
 
-export const AUTH_FORM_RESET = "[AUTH_FORM_RESET] form reset";
+export const AUTH_FORM_RESET = '[AUTH_FORM_RESET] form reset';
 
 export class AuthFormResetAction implements Action {
   readonly type = AUTH_FORM_RESET;

@@ -14,8 +14,8 @@ import { SignupFormComponent } from "./signup-form/signup-form.component";
 
 import { AuthStateComponent } from "./auth-state/auth-state.component";
 import {
-  CheckPropertyDirective,
-  ErrorTypeDirective
+	CheckPropertyDirective,
+	ErrorTypeDirective
 } from "./directives/check-property.directive";
 import { UserAvailableDirective } from "./directives/user-available.directive";
 import { StoreModule } from "@ngrx/store";
@@ -25,37 +25,37 @@ import { MockBackend } from "@angular/http/testing";
 import { BaseRequestOptions } from "@angular/http";
 
 export class AuthModule {
-  static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: RootAuthModule,
-      providers: [
-        AuthService,
-        AuthGuard,
-        fakeBackendProvider,
-        MockBackend,
-        BaseRequestOptions
-      ]
-    };
-  }
+	static forRoot(): ModuleWithProviders {
+		return {
+			ngModule: RootAuthModule,
+			providers: [
+				AuthService,
+				AuthGuard,
+				fakeBackendProvider,
+				MockBackend,
+				BaseRequestOptions
+			]
+		};
+	}
 }
 
 @NgModule({
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    CommonModule,
-    ReactiveFormsModule,
-    RouterModule,
-    EffectsModule.forFeature([AuthEffectsService]),
-    StoreModule.forFeature("authState", reducers)
-  ],
-  exports: [AuthStateComponent],
-  declarations: [
-    LoginComponent,
-    LoginFormComponent,
-    SignupComponent,
-    SignupFormComponent,
-    AuthStateComponent
-  ]
+	imports: [
+		FormsModule,
+		ReactiveFormsModule,
+		CommonModule,
+		ReactiveFormsModule,
+		RouterModule,
+		EffectsModule.forFeature([AuthEffectsService]),
+		StoreModule.forFeature("authState", reducers)
+	],
+	exports: [AuthStateComponent],
+	declarations: [
+		LoginComponent,
+		LoginFormComponent,
+		SignupComponent,
+		SignupFormComponent,
+		AuthStateComponent
+	]
 })
-export class RootAuthModule {}
+export class RootAuthModule { }

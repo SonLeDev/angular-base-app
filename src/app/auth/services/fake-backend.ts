@@ -112,7 +112,8 @@ export let fakeBackendProvider = {
               id: tokenValid24hours.getMilliseconds(),
               username: params.username,
               password: b64EncodeUnicode(params.password),
-              token: tokenValid24hours.getUTCMilliseconds().toPrecision()
+              token: tokenValid24hours.getUTCMilliseconds().toPrecision(),
+              errorMessages:""
             });
             connection.mockRespond(
               new Response(

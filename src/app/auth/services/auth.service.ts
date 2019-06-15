@@ -12,40 +12,42 @@ const USER_KEY = "USER";
 
 @Injectable()
 export class AuthService {
-  public get username() {
-    let user = JSON.parse(localStorage.getItem(USER_KEY));
-    if (user && user.username && new Date(user.token) > new Date()) {
-      return user.username;
-    }
-    return null;
-  }
+	public get username() {
+		let user = JSON.parse(localStorage.getItem(USER_KEY));
+		if (user && user.username && new Date(user.token) > new Date()) {
+			return user.username;
+		}
+		return null;
+	}
 
-  constructor(private http: Http, private store: Store<fromAuth.State>) {
-    let user = JSON.parse(localStorage.getItem(USER_KEY));
-    console.log("USER ", user);
+	constructor(private http: Http, private store: Store<fromAuth.State>) {
+		let user = JSON.parse(localStorage.getItem(USER_KEY));
+		console.log("USER ", user);
 
-    if (user && user.username && new Date(user.token) > new Date()) {
-      this.store.dispatch(new Auth.LogInSuccessAction(user));
-    }
-  }
+		if (user && user.username && new Date(user.token) > new Date()) {
+			this.store.dispatch(new Auth.LogInSuccessAction(user));
+		}
+	}
 
-  logIn({ username, password }: IUserAccount): Observable<IUserAccount> {
-    return this.http
-      .post("/api/authenticate/login", { username, password })
-      .pipe(map(res => res.json()));
-  }
+	logIn({ username, password }: IUserAccount): Observable<IUserAccount> {
+		console.log('===== [auth.service][AuthService]LOGIN : logIn');
 
-  signup({ username, password }: IUserAccount): Observable<IUserAccount> {
-    return this.http
-      .post("/api/authenticate/signup", { username, password })
-      .pipe(map(res => res.json()));
-  }
+		return this.http
+			.post("/api/authenticate/login", { username, password })
+			.pipe(map(res => res.json()));
+	}
 
-  signupUser(
-    username: string
-  ): Observable<{ error: boolean; errorMessage: string }> {
-    return this.http
-      .post("/api/authenticate/signup/user", { username })
-      .pipe(map(res => res.json()));
-  }
+	signup({ username, password }: IUserAccount): Observable<IUserAccount> {
+		return this.http
+			.post("/api/authenticate/signup", { username, password })
+			.pipe(map(res => res.json()));
+	}
+
+	signupUser(
+		username: string
+	): Observable<{ error: boolean; errorMessage: string }> {
+		return this.http
+			.post("/api/authenticate/signup/user", { username })
+			.pipe(map(res => res.json()));
+	}
 }

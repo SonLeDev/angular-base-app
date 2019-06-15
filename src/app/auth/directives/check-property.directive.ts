@@ -32,17 +32,7 @@ export class CheckPropertyDirective implements OnInit, OnDestroy {
     private renderer: Renderer2
   ) {}
   ngOnInit() {
-    this.control = this.form.get(this.checkProperty);
-    let formSubmit$ = (<FormGroupDirective>this._fg).ngSubmit.subscribe(() => {
-      this.hasSubmitted = true;
-    });
-
-    this.controlValue$ = of(merge(this.control.valueChanges, of(""), formSubmit$);
-    this.controlSubscription = this.controlValue$.subscribe(() => {
-      this.setVisible();
-    }
-    )
-    );
+     
   }
 
   private setVisible() {

@@ -24,7 +24,7 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit() {}
 
-  userAccount: IUserAccount = new UserAccount(0, "", "", "");
+  userAccount: IUserAccount = new UserAccount(0, "", "", "","");
 
   onSubmit() {
     console.debug(
@@ -41,6 +41,7 @@ export class UserAccount implements IUserAccount {
     public id: number,
     public username: string,
     public password: string,
-    public token: string
+    public token: string,
+    public errorMessages:string
   ) {}
 }

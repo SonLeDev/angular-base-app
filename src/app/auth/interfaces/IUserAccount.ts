@@ -3,4 +3,5 @@ export interface IUserAccount {
   username: string;
   password: string;
   token: string;
+  errorMessages:string;
 }

@@ -1,0 +1,3 @@
+<app-formbuilder-list [forms]="forms" (onFormSelected)="viewFormDetail($event)"></app-formbuilder-list>
+<app-formbuilder-detail [form]="currSelectedForm" (onEditFormDetail)="submitEditDetail($event)">
+</app-formbuilder-detail>

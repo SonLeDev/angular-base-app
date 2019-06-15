@@ -28,7 +28,7 @@ export class SignupFormComponent implements OnInit {
   errorMessage: string | null;
   ngOnInit() {}
 
-  regisUser: IUserAccount = new UserAccount(0, null, null, null);
+  regisUser: IUserAccount = new UserAccount(0, null, null, null,null);
 
   onSubmit() {
     console.debug(
@@ -49,6 +49,7 @@ export class UserAccount implements IUserAccount {
     public id: number,
     public username: string,
     public password: string,
-    public token: string
+    public token: string,
+    public errorMessages:string
   ) {}
 }
